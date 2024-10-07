@@ -1,26 +1,31 @@
-import app from './src/app';
-import envConfig from './src/config/config';
-import connectionToDb from './src/config/db';
-import { Server } from 'socket.io';
+import app from './src/app'
+import { envConfig } from './src/config/config'
+import connectToDb from './src/config/db'
+import {Server} from 'socket.io'
 
-let io : Server | undefined;
-async function startServer(){
-    await connectionToDb();
-    const port = envConfig.port;
+// data receive garda - on 
+// data pathauda  - emit 
+// request -- socket 
+// api -- event
+// req.body = data
+let io:Server | undefined; 
+function startServer(){
+     connectToDb()
+     console.log(envConfig.port)
+    const port = envConfig.port || 4000
     const server = app.listen(port,()=>{
-        console.log(`Server is running on port ${port}`)
+        console.log(`Server has started at port[${port}]`)
     })
-    io = new Server(server);
+     io = new Server(server)
     
 }
-const serverStarted = startServer();
-async function getSocketIO(){
-    await serverStarted;
+
+function getSocketIo(){
     if(!io){
-        throw new Error('Socket.io is not initialized');
+        throw new Error("socketio initialized vako xainw hai!")
     }
-    return io;
+    return io; 
 }
 
-export { getSocketIO };
-
+startServer()
+export {getSocketIo}

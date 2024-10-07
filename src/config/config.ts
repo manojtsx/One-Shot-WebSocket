@@ -1,9 +1,8 @@
 import { config } from "dotenv";
-config();
+config()
 
-const envConfig = {
-  port: process.env.PORT,
-  mongoConnectionString : process.env.MONGO_URI
-};
+export const envConfig = {
+    port : process.env.PORT, 
+    mongoConnectionString : process.env.MONGO_URI
+}
 
-export default envConfig;

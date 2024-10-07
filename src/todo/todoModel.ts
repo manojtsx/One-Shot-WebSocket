@@ -1,13 +1,13 @@
 import { Schema, model } from "mongoose";
-import { ITodo, EStatus } from "./todoTypes";
+import { ITodo, Status } from "./todoTypes";
 
 const todoSchema = new Schema<ITodo>({
     task: { type: String, required: true },
     deadLine: { type: String, required: true },
     status: {
         type: String,
-        enum: Object.values(EStatus),
-        default: EStatus.Pending
+        enum: Object.values(Status),
+        default: Status.Pending
     }
 });
 

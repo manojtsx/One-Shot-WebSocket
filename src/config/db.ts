@@ -1,17 +1,16 @@
 import mongoose from "mongoose";
-import envConfig from "./config";
+import { envConfig } from "./config";
 
-async function connectionToDb(){
-    try{
+async function connectToDb(){
+    try {
         mongoose.connection.on("connected",()=>{
-            console.log('Connected to database');
+            console.log("Database connected vayo hai!!")
         })
-        await mongoose.connect(envConfig.mongoConnectionString as string)
-    }catch(error){
-        console.log(error);
-        process.exit(1);
+       await mongoose.connect(envConfig.mongoConnectionString as string)
+    } catch (error) {
+        console.log(error)
+        process.exit(1)
     }
 }
 
-
-export default connectionToDb
+export default connectToDb
